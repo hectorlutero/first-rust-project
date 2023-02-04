@@ -14,10 +14,22 @@ fn main() {
         fn perform_operation<T: Operation>(operation: T, a: i32, b: i32) -> i32 {
             operation.calculate(a, b)
         }
+        // APPLYING LSP (LISKOV SUBSTITUTION)
+        pub struct Multiplication;
+        
+        impl Operation for Multiplication {
+        fn calculate(&self, a: i32, b: i32) -> i32 {
+            a * b
+        }
+        }
+        let multiplication = Multiplication;
+        
+
         println!("Enter your choice: ");
         println!("1. Sum of two values");
         println!("2. Subtraction of two values");
-        println!("3. Quit");
+        println!("3. Multiplication of two values");
+        println!("4. Quit");
 
         let mut choice = String::new();
         io::stdin().read_line(&mut choice)
@@ -31,7 +43,7 @@ fn main() {
             },
         };
 
-        if choice == 3 {
+        if choice == 4 {
             break;
         }
 
@@ -64,6 +76,8 @@ fn main() {
             println!("The sum of {} and {} is: {}", first, second, perform_operation(addition, first, second));
         } else if choice == 2 {
             println!("The subtraction of {} and {} is: {}", first, second, perform_operation(subtraction, first, second));
+        } else if choice == 3 {
+            println!("The subtraction of {} and {} is: {}", first, second, perform_operation(multiplication, first, second));
         }
     }
 }
