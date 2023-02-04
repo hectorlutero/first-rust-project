@@ -1,4 +1,5 @@
 use std::io;
+mod calculator;
 
 fn main() {
     println!("Welcome to the Rust calculator!");
@@ -49,9 +50,9 @@ fn main() {
         };
 
         if choice == 1 {
-            println!("The sum of {} and {} is: {}", first, second, first + second);
+            println!("The sum of {} and {} is: {}", first, second, calculator::sum(first, second));
         } else if choice == 2 {
-            println!("The subtraction of {} and {} is: {}", first, second, first - second);
+            println!("The subtraction of {} and {} is: {}", first, second, calculator::subtraction(first, second));
         }
     }
 }
