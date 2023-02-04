@@ -1,9 +1,19 @@
 use std::io;
-mod calculator;
+mod operations;
+
+use operations::Operation;
+use operations::Addition;
+use operations::Subtraction;
 
 fn main() {
     println!("Welcome to the Rust calculator!");
     loop {
+        let addition = Addition;
+        let subtraction = Subtraction;
+        
+        fn perform_operation<T: Operation>(operation: T, a: i32, b: i32) -> i32 {
+            operation.calculate(a, b)
+        }
         println!("Enter your choice: ");
         println!("1. Sum of two values");
         println!("2. Subtraction of two values");
@@ -49,10 +59,11 @@ fn main() {
             },
         };
 
+
         if choice == 1 {
-            println!("The sum of {} and {} is: {}", first, second, calculator::sum(first, second));
+            println!("The sum of {} and {} is: {}", first, second, perform_operation(addition, first, second));
         } else if choice == 2 {
-            println!("The subtraction of {} and {} is: {}", first, second, calculator::subtraction(first, second));
+            println!("The subtraction of {} and {} is: {}", first, second, perform_operation(subtraction, first, second));
         }
     }
 }
